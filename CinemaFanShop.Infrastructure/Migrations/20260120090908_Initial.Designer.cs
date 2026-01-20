@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaFanShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260119140508_Initial")]
+    [Migration("20260120090908_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
