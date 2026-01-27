@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaFanShop", "CinemaFanS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaFanShop.Infrastructure", "CinemaFanShop.Infrastructure\CinemaFanShop.Infrastructure.csproj", "{A86DDB56-A652-47E5-AF4A-48293597B48B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebShopApp.Core", "WebShopApp.Core\WebShopApp.Core.csproj", "{F0142379-18B0-4748-8154-3DE93C2C214A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A86DDB56-A652-47E5-AF4A-48293597B48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A86DDB56-A652-47E5-AF4A-48293597B48B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A86DDB56-A652-47E5-AF4A-48293597B48B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0142379-18B0-4748-8154-3DE93C2C214A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0142379-18B0-4748-8154-3DE93C2C214A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0142379-18B0-4748-8154-3DE93C2C214A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0142379-18B0-4748-8154-3DE93C2C214A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

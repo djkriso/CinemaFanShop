@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CinemaFanShop.Infrastructure.Data.Entities;
 using CinemaFanShop.Infrastructure.Data.Infrastructure;
+using WebShopApp.Core.Contracts;
+using WebShopApp.Core.Services;
 
 
 namespace CinemaFanShop
@@ -16,7 +18,8 @@ namespace CinemaFanShop
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            options.UseLazyLoadingProxies()
+            .UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<ApplicationUser>(options => {
@@ -32,6 +35,10 @@ namespace CinemaFanShop
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<ICategoryService, CategoryService>();
+builder.Services.AddTransient<IBrandService, BrandService>();
+
 
             var app = builder.Build();
             app.PrepareDatabase();
