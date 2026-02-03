@@ -18,6 +18,9 @@ namespace CinemaFanShop.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.23")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -153,7 +156,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Order", b =>
@@ -416,7 +419,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Movie", "Movie")
-                        .WithMany("Movies")
+                        .WithMany("Products")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -491,7 +494,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Movie", b =>
                 {
-                    b.Navigation("Movies");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Product", b =>

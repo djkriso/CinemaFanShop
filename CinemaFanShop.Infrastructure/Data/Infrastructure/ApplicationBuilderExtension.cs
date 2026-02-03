@@ -28,6 +28,8 @@ namespace CinemaFanShop.Infrastructure.Data.Infrastructure
 
             var dataBrand = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
             SeedBrands(dataBrand);
+            var dataMovie = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            SeedMovies(dataMovie);
 
             return app;
         }
@@ -40,18 +42,35 @@ namespace CinemaFanShop.Infrastructure.Data.Infrastructure
 
             dataCategory.Categories.AddRange(new[]
             {
-        new Category { Name = "T-Shirts" },
-        new Category { Name = "Cups" },
-        new Category { Name = "Toys" },
-        new Category { Name = "Sweaters" },
-        new Category { Name = "Costumes" },
-        new Category { Name = "Hats" },
-        new Category { Name = "Bags & Backpacks" }
-    });
+                new Category { Name = "T-Shirts" },
+                new Category { Name = "Cups" },
+                new Category { Name = "Toys" },
+                new Category { Name = "Sweaters" },
+                new Category { Name = "Costumes" },
+                new Category { Name = "Hats" },
+                new Category { Name = "Bags & Backpacks" }
+            });
 
             dataCategory.SaveChanges();
         }
+        private static void SeedMovies(ApplicationDbContext dataMovie)
+        {
+            if (dataMovie.Movies.Any())
+            {
+                return;
+            }
 
+            dataMovie.Movies.AddRange(new[]
+            {
+                new Movie { Name = "Stranger Things" },
+                new Movie { Name = "Breaking Bad" },
+                new Movie { Name = "Star Wars" },
+                new Movie { Name = "Dexter" },
+                new Movie { Name = "Pod Prikritie" },
+            });
+
+            dataMovie.SaveChanges();
+        }
         private static void SeedBrands(ApplicationDbContext dataBrand)
         {
             if (dataBrand.Brands.Any())
@@ -61,18 +80,14 @@ namespace CinemaFanShop.Infrastructure.Data.Infrastructure
 
             dataBrand.Brands.AddRange(new[]
             {
-        new Brand { BrandName = "Stranger Things" },
-        new Brand { BrandName = "Breaking Bad" },
-        new Brand { BrandName = "Star Wars" },
-        new Brand { BrandName = "Dexter" },
-        new Brand { BrandName = "Pod Prikritie" },
-        new Brand { BrandName = "Game Of Thrones" },
-        new Brand { BrandName = "Dune" },
-        new Brand { BrandName = "Peaky Blinders" }
-    });
+                new Brand { BrandName = "Cooperation 1" },
+                new Brand { BrandName = "Cooperation 2" },
+               
+            });
 
             dataBrand.SaveChanges();
         }
+
 
 
 

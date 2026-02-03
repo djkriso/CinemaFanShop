@@ -15,6 +15,6 @@ namespace CinemaFanShop.Infrastructure.Data.Entities
         [MaxLength(30)]
         public string Name { get; set; } = null!;
 
-        public virtual IEnumerable<Product> Movies { get; set; } = new List<Product>();
+        public virtual IEnumerable<Product> Products { get; set; } = new List<Product>();
     }
 }
