@@ -45,7 +45,6 @@ namespace CinemaFanShop.Models.Product
 
         [Display(Name = "Discount")]
         public decimal Discount { get; set; }
-        public string Movie { get; internal set; }
     }
 
 }

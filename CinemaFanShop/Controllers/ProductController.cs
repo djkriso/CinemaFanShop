@@ -1,6 +1,7 @@
 ﻿using CinemaFanShop.Infrastructure.Data.Entities;
 using CinemaFanShop.Models.Brand;
 using CinemaFanShop.Models.Category;
+using CinemaFanShop.Models.Movie;
 using CinemaFanShop.Models.Product;
 
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,7 @@ namespace CinemaFanShop.Controllers
         private readonly IProductService _productService;
         private readonly ICategoryService _categoryService;
         private readonly IBrandService _brandService;
+        private readonly IMovieService _movieService;
 
         public ProductController(
             IProductService productService,
@@ -100,6 +102,14 @@ namespace CinemaFanShop.Controllers
 
             product.Categories = _categoryService.GetCategories()
                 .Select(x => new CategoryPairVM()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
+                .ToList();
+
+            product.Movies = _movieService.GetMovies()
+                .Select(x => new MoviePairVM()
                 {
                     Id = x.Id,
                     Name = x.Name
