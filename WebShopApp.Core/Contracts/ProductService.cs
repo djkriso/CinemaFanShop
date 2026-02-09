@@ -118,8 +118,15 @@ namespace WebShopApp.Core.Contracts
             return _context.SaveChanges() != 0;
         }
 
+        public bool Update(int id, string productName, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
+        {
+            throw new NotImplementedException();
+        }
 
-
+        public bool Update(int id, string productName, int brandId, int categoryId, int categoryId1, string picture, int quantity, decimal price, decimal discount)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 
