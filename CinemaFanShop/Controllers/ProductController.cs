@@ -2,6 +2,7 @@
 using CinemaFanShop.Models.Brand;
 using CinemaFanShop.Models.Category;
 using CinemaFanShop.Models.Movie;
+using CinemaFanShop.Models.Order;
 using CinemaFanShop.Models.Product;
 
 using Microsoft.AspNetCore.Authorization;
@@ -25,11 +26,14 @@ namespace CinemaFanShop.Controllers
         public ProductController(
             IProductService productService,
             ICategoryService categoryService,
-            IBrandService brandService)
+            IBrandService brandService,
+            IMovieService movieService)
+
         {
             this._productService = productService;
             this._categoryService = categoryService;
             this._brandService = brandService;
+            this._movieService = movieService;
         }
 
         // GET: ProductController
@@ -271,5 +275,11 @@ namespace CinemaFanShop.Controllers
             return View();
         }
 
+
+
+
     }
+
+
+
 }
