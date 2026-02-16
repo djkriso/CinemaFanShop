@@ -47,5 +47,63 @@ namespace CinemaFanShop.Controllers
             //връщаме списъка
             return this.View(users);
         }
+
+        // GET: Client/Delete/5
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+                return BadRequest();
+
+            var user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+                return NotFound();
+
+            var userToDelete = new ClientDeleteVM
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+                Email = user.Email,
+                UserName = user.UserName
+            };
+
+            return View(userToDelete);
+        }
+
+
+        // POST: Client/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(ClientDeleteVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = await _userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+                return NotFound();
+
+            var result = await _userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(string.Empty, error.Description);
+
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Success));
+        }
+
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
     }
 }
