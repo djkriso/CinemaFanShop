@@ -41,7 +41,7 @@ namespace CinemaFanShop
             builder.Services.AddTransient<IProductService, ProductService>();
             builder.Services.AddTransient<IMovieService, MovieService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
-
+            builder.Services.AddTransient<IStatisticsService, StatisticService>();
 
 
 
