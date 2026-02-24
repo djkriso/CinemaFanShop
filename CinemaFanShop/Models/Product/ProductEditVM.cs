@@ -40,6 +40,11 @@ namespace CinemaFanShop.Models.Product
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
 
+        [Required]
+        [MaxLength(30)]
+        [Display(Name = "Description")]
+        public string Description { get; set; } = null!;
+
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 

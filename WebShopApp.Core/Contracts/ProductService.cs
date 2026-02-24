@@ -91,8 +91,8 @@ namespace WebShopApp.Core.Contracts
         }
 
 
-        public bool Update(int productId, string name, int brandId, int categoryId,int movieId, string description, string picture,
-                   int quantity, decimal price, decimal discount)
+        public bool Update(int productId, string name, int brandId, int categoryId, int movieId, string picture,
+                   int quantity, string description, decimal price, decimal discount)
         {
             var product = GetProductById(productId);
             if (product == default(Product))
@@ -118,15 +118,7 @@ namespace WebShopApp.Core.Contracts
             return _context.SaveChanges() != 0;
         }
 
-        public bool Update(int id, string productName, int brandId, int categoryId, string picture, int quantity, decimal price, decimal discount)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(int id, string productName, int brandId, int categoryId, int categoryId1, string picture, int quantity, decimal price, decimal discount)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 
 

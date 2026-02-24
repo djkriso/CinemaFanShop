@@ -208,10 +208,11 @@ namespace CinemaFanShop.Controllers
                     id,
                     product.ProductName,
                     product.BrandId,
-                    product.MovieId,
                     product.CategoryId,
+                    product.MovieId,
                     product.Picture,
                     product.Quantity,
+                    product.Description,
                     product.Price,
                     product.Discount);
 

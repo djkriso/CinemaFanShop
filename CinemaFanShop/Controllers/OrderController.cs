@@ -30,6 +30,7 @@ namespace CinemaFanShop.Controllers
             Product product = _productService.GetProductById(id);
             if (product == null)
             {
+                
                 return NotFound();
             }
 
