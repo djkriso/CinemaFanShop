@@ -49,6 +49,7 @@ namespace CinemaFanShop.Controllers
                     BrandId = product.BrandId,
                     BrandName = product.Brand.BrandName,
                     MovieName = product.Movie.Name,
+                    Description = product.Description,
                     CategoryId = product.CategoryId,
                     CategoryName = product.Category.Name,
                     Picture = product.Picture,
@@ -78,8 +79,11 @@ namespace CinemaFanShop.Controllers
                 Id = item.Id,
                 ProductName = item.ProductName,
                 BrandId = item.BrandId,
+                MovieName = item.Movie.Name,
+                MovieId = item.MovieId,
                 BrandName = item.Brand.BrandName,
                 CategoryId = item.CategoryId,
+                Description = item.Description,
                 CategoryName = item.Category.Name,
                 Picture = item.Picture,
                 Quantity = item.Quantity,
@@ -169,6 +173,8 @@ namespace CinemaFanShop.Controllers
                 BrandId = product.BrandId,
                 // BrandName = product.Brand.BrandName,
                 MovieId = product.MovieId,
+                Description = product.Description,
+
                 CategoryId = product.CategoryId,
                 // CategoryName = product.Category.CategoryName,
                 Picture = product.Picture,
@@ -191,6 +197,13 @@ namespace CinemaFanShop.Controllers
                     Name = c.Name
                 })
                 .ToList();
+
+            //updatedProduct.Movies = _movieService.GetMovies()
+            //    .Select(m => new MoviePairVM()
+            //    {
+            //        Id = m.Id,
+            //        Name = m.Name
+            //    }).ToArray();
 
             return View(updatedProduct);
 
@@ -246,6 +259,7 @@ namespace CinemaFanShop.Controllers
                 CategoryName = item.Category.Name,
                 Picture = item.Picture,
                 Quantity = item.Quantity,
+                Description = item.Description,
                 Price = item.Price,
                 Discount = item.Discount
             };

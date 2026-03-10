@@ -15,8 +15,13 @@ namespace CinemaFanShop.Models.Product
         [Display(Name = "Brand")]
         public string BrandName { get; set; } = null!;
 
+        public int MovieId { get; set; }
+
         [Display(Name = "Movie")]
         public string MovieName { get; set; } = null!;
+
+        [Display(Name = "Description")]
+        public string Description { get; set; }
 
         public int CategoryId { get; set; }
 

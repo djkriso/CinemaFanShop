@@ -25,6 +25,10 @@ namespace CinemaFanShop.Models.Product
         [Required]
         [Display(Name = "Movie")]
         public int MovieId { get; set; }
+        public virtual List<CategoryPairVM> Movies { get; set; }
+            = new List<CategoryPairVM>();
+
+
 
         [Required]
         [Display(Name = "Category")]

@@ -25,6 +25,9 @@ namespace CinemaFanShop.Models.Product
         [Display(Name = "Movie")]
         public string MovieName { get; set; }
 
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
         public int CategoryId { get; set; }
 
         [Display(Name = "Category")]

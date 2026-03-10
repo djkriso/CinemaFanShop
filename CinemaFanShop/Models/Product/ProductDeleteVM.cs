@@ -29,6 +29,9 @@ namespace CinemaFanShop.Models.Product
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
 
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
         [Display(Name = "Price")]
         public decimal Price { get; set; }
 
