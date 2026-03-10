@@ -22,6 +22,9 @@ namespace CinemaFanShop.Infrastructure.Data.Entities
         [Required]
         [MaxLength(50)]
         public string Address { get; set; } = null!;
+
+
+        public virtual IEnumerable<Favourites> Favourites { get; set; } = new List<Favourites>();
     }
 
 }
