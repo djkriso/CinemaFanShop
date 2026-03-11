@@ -1,5 +1,6 @@
 ﻿using CinemaFanShop.Models.Brand;
 using CinemaFanShop.Models.Category;
+using CinemaFanShop.Models.Movie;
 
 using System.ComponentModel.DataAnnotations;
 
@@ -25,8 +26,8 @@ namespace CinemaFanShop.Models.Product
         [Required]
         [Display(Name = "Movie")]
         public int MovieId { get; set; }
-        public virtual List<CategoryPairVM> Movies { get; set; }
-            = new List<CategoryPairVM>();
+        public virtual List<MoviePairVM> Movies { get; set; }
+            = new List<MoviePairVM>();
 
 
 
@@ -34,8 +35,12 @@ namespace CinemaFanShop.Models.Product
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+
         public virtual List<CategoryPairVM> Categories { get; set; }
             = new List<CategoryPairVM>();
+
+
+
 
         [Display(Name = "Picture")]
         public string Picture { get; set; } = null!;

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaFanShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260205072720_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260311073212_intiial")]
+    partial class intiial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,6 +142,30 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Movie", b =>
@@ -388,6 +412,25 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+                {
+                    b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Product", "Product")
+                        .WithMany("Favourites")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.ApplicationUser", "User")
+                        .WithMany("Favourites")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Order", b =>
                 {
                     b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Product", "Product")
@@ -485,6 +528,11 @@ namespace CinemaFanShop.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Favourites");
+                });
+
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Brand", b =>
                 {
                     b.Navigation("Products");
@@ -502,6 +550,8 @@ namespace CinemaFanShop.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Product", b =>
                 {
+                    b.Navigation("Favourites");
+
                     b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618

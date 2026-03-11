@@ -198,12 +198,12 @@ namespace CinemaFanShop.Controllers
                 })
                 .ToList();
 
-            //updatedProduct.Movies = _movieService.GetMovies()
-            //    .Select(m => new MoviePairVM()
-            //    {
-            //        Id = m.Id,
-            //        Name = m.Name
-            //    }).ToArray();
+            updatedProduct.Movies = _movieService.GetMovies()
+               .Select(m => new MoviePairVM()
+                {
+                    Id = m.Id,
+                    Name = m.Name
+               }).ToList();
 
             return View(updatedProduct);
 

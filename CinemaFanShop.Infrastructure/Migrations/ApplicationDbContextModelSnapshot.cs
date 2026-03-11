@@ -149,20 +149,18 @@ namespace CinemaFanShop.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("productId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("ProductId");
 
-                    b.HasIndex("productId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Favorites");
                 });
@@ -413,13 +411,15 @@ namespace CinemaFanShop.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
                 {
-                    b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.ApplicationUser", "User")
-                        .WithMany("Favourites")
-                        .HasForeignKey("UserId");
-
                     b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Product", "Product")
                         .WithMany("Favourites")
-                        .HasForeignKey("productId")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.ApplicationUser", "User")
+                        .WithMany("Favourites")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
