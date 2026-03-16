@@ -1,72 +1,136 @@
 ﻿@model CinemaFanShop.Models.Order.OrderCreateVM
+
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Order";
 }
-<h1>Order</h1>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
 
+<style>
 
-                <input type="hidden" asp-for="ProductId" class="form-control"
-                       readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Picture" class="control-label"></label>
-                <input type="hidden" asp-for="Picture" class="form-control"
-                       readonly="readonly" />
-                <div>
-                    <img src="@Html.DisplayFor(model => model.Picture)" alt="Image"
-                         width="100" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Discount" class="control-label"></label>
-                <input asp-for="Discount" class="form-control" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" onclick="calcSum()" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-
-            </div>
-            <div class="form-group">
-                <label asp-for="TotalPrice" class="control-label"></label>
-                <input asp-for="TotalPrice" class="form-control" readonly="readonly" />
-            </div>
-            <br />
-            <div class="form-group">
-                <input type="submit" value="Order" class="btn btn-primary" />
-
-                <a asp-action="Index" asp-controller="Product" class="btn btn-
-warning">Back to Products</a>
-
-            </div>
-        </form>
-    </div>
-</div>
-<script>
-    function calcSum() {
-    let q = document.getElementsByName('Quantity')[0].value;
-    let p = document.getElementsByName('Price')[0].value;
-    let d = document.getElementsByName('Discount')[0].value;
-    let sum = Number(q) * (Number(p) - Number(p) * Number(d) / 100);
-    document.getElementsByName('TotalPrice')[0].value = sum.toFixed(2)
+    .modern-card {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
+
+    .product-img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-rounded {
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="page-header">
+        <h2 class="fw-bold">🛒 Create Order</h2>
+    </div>
+
+    <div class="modern-card">
+
+        <form asp-action="Create">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="row g-4">
+
+                <div class="col-md-4 text-center">
+
+                    <img src="@Model.Picture" class="product-img mb-3" />
+
+                    <input type="hidden" asp-for="Picture" />
+
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="mb-3">
+                        <label asp-for="ProductName" class="form-label"></label>
+                        <input asp-for="ProductName" class="form-control" readonly />
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Price" class="form-label"></label>
+                            <input asp-for="Price" class="form-control" readonly />
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Discount" class="form-label"></label>
+                            <input asp-for="Discount" class="form-control" readonly />
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Quantity" class="form-label"></label>
+                            <input asp-for="Quantity" class="form-control" oninput="calcSum()" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="TotalPrice" class="form-label"></label>
+                        <input asp-for="TotalPrice" class="form-control fw-bold text-success" readonly />
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <input type="submit" value="Order"
+                               class="btn btn-success btn-rounded" />
+
+                        <a asp-controller="Product"
+                           asp-action="Index"
+                           class="btn btn-dark btn-rounded">
+                            Back to Products
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+    function calcSum(){
+
+        let q = document.getElementsByName('Quantity')[0].value;
+        let p = document.getElementsByName('Price')[0].value;
+        let d = document.getElementsByName('Discount')[0].value;
+
+        let sum = Number(q) * (Number(p) - Number(p) * Number(d) / 100);
+
+        document.getElementsByName('TotalPrice')[0].value = sum.toFixed(2);
+
+    }
+
     document.getElementById('Quantity').max = @Model.QuantityInStock;
     document.getElementById('Quantity').min = 1;
+
 </script>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

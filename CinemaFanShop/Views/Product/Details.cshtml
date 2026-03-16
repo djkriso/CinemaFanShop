@@ -1,78 +1,108 @@
 ﻿@model CinemaFanShop.Models.Product.ProductDetailsVM
+
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Product Details";
 }
-<h1>Details</h1>
-<div>
-    <h4>ProductDetailsVM</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BrandName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BrandName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MovieName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
 
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CategoryName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-        <dd class="col-sm-10">
-            <img src="@Html.DisplayFor(model => model.Picture)" alt="Image"
-                 width="100" />
-            @*@Html.DisplayFor(model => model.Picture)*@
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Discount)
+<style>
 
-            21
+    .page-header {
+        margin-bottom: 25px;
+    }
 
-        </dd>
-    </dl>
+    .modern-card {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        max-width: 900px;
+    }
+
+    .product-img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    .btn-rounded {
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="page-header">
+        <h2 class="fw-bold">🎬 Product Details</h2>
+    </div>
+
+    <div class="modern-card">
+
+        <div class="row g-4">
+
+            <div class="col-md-4 text-center">
+                <img src="@Model.Picture" class="product-img" />
+            </div>
+
+            <div class="col-md-8">
+
+                <h4 class="fw-bold mb-3">@Model.ProductName</h4>
+
+                <dl class="row">
+
+                    <dt class="col-sm-4">Brand</dt>
+                    <dd class="col-sm-8">@Model.BrandName</dd>
+
+                    <dt class="col-sm-4">Movie</dt>
+                    <dd class="col-sm-8">@Model.MovieName</dd>
+
+                    <dt class="col-sm-4">Category</dt>
+                    <dd class="col-sm-8">@Model.CategoryName</dd>
+
+                    <dt class="col-sm-4">Description</dt>
+                    <dd class="col-sm-8">@Model.Description</dd>
+
+                    <dt class="col-sm-4">Stock</dt>
+                    <dd class="col-sm-8">@Model.Quantity</dd>
+
+                    <dt class="col-sm-4">Price</dt>
+                    <dd class="col-sm-8 text-success fw-bold">@Model.Price</dd>
+
+                    <dt class="col-sm-4">Discount</dt>
+                    <dd class="col-sm-8 text-danger">@Model.Discount %</dd>
+
+                </dl>
+
+            </div>
+
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="d-flex gap-2">
+              @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+              {
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               class="btn btn-warning btn-rounded">
+                Edit
+            </a>
+              }
+            <a asp-action="Index"
+               class="btn btn-dark btn-rounded">
+                Back to Products
+            </a>
+
+        </div>
+
+    </div>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

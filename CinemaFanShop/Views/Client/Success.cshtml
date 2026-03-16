@@ -2,8 +2,52 @@
     ViewData["Title"] = "Success";
 }
 
-<h1>You successfully removed a user!</h1>
+<style>
 
-<div>
-    <a asp-action="Index">Back To List</a>
+    .success-card{
+        background:white;
+        padding:40px;
+        border-radius:16px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        text-align:center;
+        max-width:600px;
+        margin:auto;
+    }
+
+    .success-icon{
+        font-size:60px;
+        margin-bottom:15px;
+    }
+
+    .btn-rounded{
+        border-radius:20px;
+        padding:6px 18px;
+        font-size:14px;
+    }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✅
+        </div>
+
+        <h2 class="fw-bold mb-3">
+            User Removed Successfully
+        </h2>
+
+        <p class="text-muted mb-4">
+            The user has been successfully removed from the system.
+        </p>
+
+        <a asp-action="Index"
+           class="btn btn-dark btn-rounded">
+            Back to Clients
+        </a>
+
+    </div>
+
 </div>

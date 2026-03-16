@@ -1,9 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Denied";
+    ViewData["Title"] = "Insufficient Availability";
 }
 
-<h1>Insufficient availability</h1>
+<style>
 
-<div>
-    <a asp-controller="Product" asp-action="Index">Back to list of products</a>
+    .denied-card {
+        background: white;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        text-align: center;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .denied-icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    .btn-rounded {
+        border-radius: 20px;
+        padding: 6px 18px;
+        font-size: 14px;
+    }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="denied-card">
+
+        <div class="denied-icon">
+            ⚠️
+        </div>
+
+        <h2 class="fw-bold mb-3">
+            Insufficient Availability
+        </h2>
+
+        <p class="text-muted mb-4">
+            The requested quantity exceeds the available stock for this product.
+            Please select a smaller quantity or choose another product.
+        </p>
+
+        <a asp-controller="Product"
+           asp-action="Index"
+           class="btn btn-dark btn-rounded">
+            Back to Products
+        </a>
+
+    </div>
+
 </div>

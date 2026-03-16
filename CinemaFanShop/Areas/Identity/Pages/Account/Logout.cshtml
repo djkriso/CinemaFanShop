@@ -4,18 +4,74 @@
     ViewData["Title"] = "Log out";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
+<style>
+
+    .logout-card{
+        background:white;
+        padding:40px;
+        border-radius:16px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.08);
+        text-align:center;
+        max-width:500px;
+        margin:auto;
+    }
+
+    .logout-icon{
+        font-size:60px;
+        margin-bottom:15px;
+    }
+
+    .btn-rounded{
+        border-radius:20px;
+        padding:6px 18px;
+        font-size:14px;
+    }
+
+</style>
+
+<div class="container mt-5">
+
+    <div class="logout-card">
+
+        <div class="logout-icon">
+            🚪
+        </div>
+
+        <h2 class="fw-bold mb-3">
+            Log out
+        </h2>
+
+        @if (User.Identity?.IsAuthenticated ?? false)
         {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            <p class="text-muted mb-4">
+                Are you sure you want to log out?
+            </p>
+
+            <form asp-area="Identity"
+                  asp-page="/Account/Logout"
+                  asp-route-returnUrl="@Url.Page("/", new { area = "" })"
+                  method="post">
+
+                <button type="submit"
+                        class="btn btn-danger btn-rounded">
+                    Logout
+                </button>
+
             </form>
         }
         else
         {
-            <p>You have successfully logged out of the application.</p>
+            <p class="text-success">
+                You have successfully logged out.
+            </p>
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-dark btn-rounded mt-3">
+                Back to Home
+            </a>
         }
-    }
-</header>
+
+    </div>
+
+</div>

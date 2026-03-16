@@ -1,6 +1,83 @@
 ﻿@{
     ViewData["Title"] = "Privacy Policy";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+
+    .privacy-hero {
+        background: linear-gradient(135deg,#111827,#1f2937);
+        color: white;
+        padding: 50px;
+        border-radius: 18px;
+        text-align: center;
+        margin-bottom: 35px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .privacy-card {
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        height: 100%;
+    }
+
+        .privacy-card h5 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+    .privacy-icon {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+</style>
+
+<div class="container mt-4">
+
+    <div class="privacy-hero">
+        <h1>🔒 Privacy & Data Protection</h1>
+        <p class="mb-0">
+            Cinema Fan Shop respects your privacy and protects your personal data.
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="privacy-card">
+                <div class="privacy-icon">📦</div>
+                <h5>Order Processing</h5>
+                <p>
+                    Personal data such as name, email and address is used only
+                    for processing orders and delivering products.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="privacy-card">
+                <div class="privacy-icon">🔐</div>
+                <h5>Data Security</h5>
+                <p>
+                    All user data is stored securely in our system and access
+                    is restricted to authorized administrators.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="privacy-card">
+                <div class="privacy-icon">🤝</div>
+                <h5>No Data Sharing</h5>
+                <p>
+                    Cinema Fan Shop does not sell, share or distribute
+                    user information to third parties.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</div>

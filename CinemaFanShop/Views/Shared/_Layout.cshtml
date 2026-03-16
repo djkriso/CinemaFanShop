@@ -4,91 +4,161 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CinemaFanShop</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CinemaFanShop.styles.css" asp-append-version="true" />
+
+    <style>
+
+        body {
+            background: #f5f6f8;
+        }
+
+        .navbar {
+            padding: 12px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+        }
+
+        .main-container {
+            min-height: 80vh;
+        }
+
+        footer {
+            background: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+    </style>
+
 </head>
 <body>
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CinemaFanShop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+
+            <div class="container">
+
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    🎬 CinemaFanShop
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarMain">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div class="collapse navbar-collapse" id="navbarMain">
+
+                    <ul class="navbar-nav me-auto">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-controller="Product" asp-action="Index">Products</a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">
-                                Products
-                            </a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if (this.User.Identity.IsAuthenticated)
+
+                        @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="MyOrders">My Orders</a>
+                                <a class="nav-link" asp-controller="Order" asp-action="MyOrders">My Orders</a>
                             </li>
                         }
 
-
-                        @* @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
                         {
-                            <li class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    Statistics Modul
-                                </button>
+                            <li class="nav-item dropdown">
 
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="/Client/Index">Clients</a></li>
-                                    <li><a class="dropdown-item" href="/Order/Index">Orders</a></li>
-                                </ul>
-                            </li>
-                        } *@
+                                <a class="nav-link dropdown-toggle"
+                                   href="#"
+                                   role="button"
+                                   data-bs-toggle="dropdown">
+                                    Admin Panel
+                                </a>
 
-                        @if ((this.User.Identity.IsAuthenticated) && (this.User.IsInRole("Administrator")))
-                        {
-                            <li class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                    Statistic Modul
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="/Client/Index">Clients</a></li>
-                                    <li><a class="dropdown-item" href="/Order/Index">Orders</a></li>
-                                    <li><a class="dropdown-item" href="/Statistic/Index">Statistic</a></li>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Client" asp-action="Index">
+                                            Clients
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Order" asp-action="Index">
+                                            Orders
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a class="dropdown-item" asp-controller="Statistic" asp-action="Index">
+                                            Statistics
+                                        </a>
+                                    </li>
+
                                 </ul>
+
                             </li>
                         }
 
-                        
                     </ul>
+
                     <partial name="_LoginPartial" />
+
                 </div>
+
             </div>
+
         </nav>
+
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+
+    <div class="container main-container">
+
+        <main role="main" class="py-4">
             @RenderBody()
         </main>
+
     </div>
 
-    <footer class="border-top footer text-muted">
+
+    <footer class="border-top text-muted">
+
         <div class="container">
-            &copy; 2026 - CinemaFanShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+            © 2026 CinemaFanShop
+            •
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+
         </div>
+
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
