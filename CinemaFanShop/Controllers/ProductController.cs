@@ -38,10 +38,10 @@ namespace CinemaFanShop.Controllers
 
         // GET: ProductController
         [AllowAnonymous]
-        public ActionResult Index(string searchStringCategoryName, string searchStringBrandName)
+        public ActionResult Index(string searchStringCategoryName, string searchStringBrandName, string searchStringMovieName)
         {
             List<ProductIndexVM> products = _productService
-                .GetProducts(searchStringCategoryName, searchStringBrandName)
+                .GetProducts(searchStringCategoryName, searchStringBrandName, searchStringMovieName)
                 .Select(product => new ProductIndexVM
                 {
                     Id = product.Id,

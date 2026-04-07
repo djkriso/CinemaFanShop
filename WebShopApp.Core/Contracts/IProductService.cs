@@ -19,7 +19,7 @@ namespace WebShopApp.Core.Contracts
 
         bool RemoveById(int dogproductId);
 
-        List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName);
+        List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName, string searchStringMovieName);
         bool Update(int productId, string name, int brandId, int categoryId, int movieId, string picture,
                    int quantity, string description, decimal price, decimal discount);
     }

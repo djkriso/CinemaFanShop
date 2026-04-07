@@ -1,0 +1,79 @@
+﻿@model IEnumerable<CinemaFanShop.Models.Product.ProductIndexVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Favorites</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.BrandId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </th>
+            @*<th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.BrandId)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrandName)
+                </td>
+                @*<td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Picture)" alt="Image" width="100" />
+                    @*@Html.DisplayFor(modelItem => item.Pictute)*@
+                </td>
+
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">Details</a>
+
+                    <form asp-controller="Favorites" asp-action="Remove" method="post" class="d-inline">
+                        <input type="hidden" name="productId" value="@item.Id" />
+                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </form>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

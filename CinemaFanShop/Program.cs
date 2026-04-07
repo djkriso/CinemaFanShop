@@ -5,6 +5,7 @@ using CinemaFanShop.Infrastructure.Data.Entities;
 using CinemaFanShop.Infrastructure.Data.Infrastructure;
 using WebShopApp.Core.Contracts;
 using WebShopApp.Core.Services;
+using CinemaFanShop.Core.Services;
 
 
 namespace CinemaFanShop
@@ -42,6 +43,7 @@ namespace CinemaFanShop
             builder.Services.AddTransient<IMovieService, MovieService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
             builder.Services.AddTransient<IStatisticsService, StatisticService>();
+            builder.Services.AddTransient<IFavorites, FavoritesService>();
 
 
 

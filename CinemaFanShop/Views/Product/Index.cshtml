@@ -67,6 +67,9 @@
                 <input type="text" name="SearchStringBrandName" class="form-control" placeholder="Search by Brand..." />
             </div>
             <div class="col-md-4">
+                <input type="text" name="SearchStringMovieName" class="form-control" placeholder="Search by Movie..." />
+            </div>
+            <div class="col-md-4">
                 <input type="text" name="SearchStringCategoryName" class="form-control" placeholder="Search by Category..." />
             </div>
             <div class="col-md-2">
@@ -114,7 +117,27 @@
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-rounded">Delete</a>
                               
                             }
+
+                            @if (!item.IsFavorites)
+                            {
+                                <form asp-controller="Favorites" asp-action="Add" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        <i class="bi bi-heart"></i> Add to Favorites
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <span class="badge bg-light text-danger p-2">
+                                    <i class="bi bi-heart-fill"></i> In Favorites
+                                </span>
+                            }
+
+
                         </td>
+                      
+                        
                     </tr>
                 }
             </tbody>

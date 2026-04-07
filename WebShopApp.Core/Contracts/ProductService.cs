@@ -48,7 +48,7 @@ namespace WebShopApp.Core.Contracts
             return products;
         }
 
-        public List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName)
+        public List<Product> GetProducts(string searchStringCategoryName, string searchStringBrandName, string searchStringMovieName)
         {
             List<Product> products = _context.Products.ToList();
 
@@ -75,6 +75,13 @@ namespace WebShopApp.Core.Contracts
                     .ToList();
             }
 
+            else if (!string.IsNullOrEmpty(searchStringMovieName))
+            {
+                products = products
+                    .Where(x =>
+                        x.Movie.Name.ToLower().Contains(searchStringMovieName.ToLower()))
+                    .ToList();
+            }
             return products;
         }
 
