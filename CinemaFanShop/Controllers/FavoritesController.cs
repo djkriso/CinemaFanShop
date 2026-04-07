@@ -10,11 +10,11 @@ namespace CinemaFanShop.Controllers
 {
     public class FavoritesController : Controller
     {
-        private readonly IFavorites favouritesService;
+        private readonly IFavorites _favoritesService;
 
-        public FavoritesController(IFavorites FavoritesService)
+        public FavoritesController(IFavorites favoritesService)
         {
-            this.favouritesService = FavoritesService;
+            this._favoritesService = favoritesService;
         }
         [HttpGet]
 
@@ -26,7 +26,7 @@ namespace CinemaFanShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<ProductIndexVM> products = favouritesService.GetUserFavorites(userId)
+            List<ProductIndexVM> products = favoritesService.GetUserFavorites(userId)
             .Select(product => new ProductIndexVM
             {
                 Id = product.Id,
@@ -57,7 +57,7 @@ namespace CinemaFanShop.Controllers
 
             if (!isInFavorites)
             {
-                FavoritesService.AddToFavorites(userId, productId);
+                favoritesService.AddToFavorites(userId, productId);
             }
 
             return RedirectToAction(nameof(Index));
