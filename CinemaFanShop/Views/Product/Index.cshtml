@@ -47,6 +47,36 @@
         padding: 5px 15px;
         font-size: 14px;
     }
+
+    /* ❤️ FAVORITES BUTTON */
+    .btn-favorite {
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+        background: linear-gradient(135deg, #ff4d6d, #e11d48);
+        color: white;
+        border: none;
+        transition: 0.25s ease;
+    }
+
+    .btn-favorite:hover {
+        background: linear-gradient(135deg, #e11d48, #be123c);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(225,29,72,0.3);
+    }
+
+    /* ❤️ FAVORITE BADGE (като бутон) */
+    .favorite-badge {
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+        background: #ffe4e6;
+        color: #be123c;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
 </style>
 
 <div class="container mt-4">
@@ -86,58 +116,73 @@
                     <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
                     <th>Image</th>
                     <th>@Html.DisplayNameFor(model => model.Description)</th>
-
                     <th>@Html.DisplayNameFor(model => model.Quantity)</th>
                     <th>@Html.DisplayNameFor(model => model.Price)</th>
                     <th>@Html.DisplayNameFor(model => model.Discount)</th>
                     <th>Actions</th>
                 </tr>
             </thead>
+
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td><strong>@item.ProductName</strong></td>
                         <td>@item.BrandName</td>
-                          <td>@item.MovieName</td>
+                        <td>@item.MovieName</td>
                         <td>@item.CategoryName</td>
+
                         <td>
                             <img src="@item.Picture" class="product-img" />
                         </td>
+
                         <td>@item.Description</td>
                         <td>@item.Quantity</td>
-                        <td><span class="fw-bold text-success">@item.Price</span></td>
-                        <td><span class="text-danger">@item.Discount %</span></td>
+
                         <td>
-                              <a asp-controller="Order" asp-action="Create" asp-route-id="@item.Id" class="btn btn-dark btn-sm btn-rounded">Order</a>
-                              <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-sm btn-rounded">Details</a>
-                            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-rounded">Edit</a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-rounded">Delete</a>
-                              
-                            }
-
-                            @if (!item.IsFavorites)
-                            {
-                                <form asp-controller="Favorites" asp-action="Add" method="post" class="d-inline">
-                                    <input type="hidden" name="productId" value="@item.Id" />
-                                    <button type="submit" class="btn btn-outline-danger">
-                                        <i class="bi bi-heart"></i> Add to Favorites
-                                    </button>
-                                </form>
-                            }
-                            else
-                            {
-                                <span class="badge bg-light text-danger p-2">
-                                    <i class="bi bi-heart-fill"></i> In Favorites
-                                </span>
-                            }
-
-
+                            <span class="fw-bold text-success">@item.Price</span>
                         </td>
-                      
-                        
+
+                        <td>
+                            <span class="text-danger">@item.Discount %</span>
+                        </td>
+
+                        <td>
+                            <div class="d-flex flex-wrap gap-2 align-items-center">
+
+                                <a asp-controller="Order" asp-action="Create" asp-route-id="@item.Id"
+                                   class="btn btn-dark btn-sm btn-rounded">Order</a>
+
+                                <a asp-action="Details" asp-route-id="@item.Id"
+                                   class="btn btn-success btn-sm btn-rounded">Details</a>
+
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id"
+                                       class="btn btn-warning btn-sm btn-rounded">Edit</a>
+
+                                    <a asp-action="Delete" asp-route-id="@item.Id"
+                                       class="btn btn-danger btn-sm btn-rounded">Delete</a>
+                                }
+
+                                @if (!item.IsFavorites)
+                                {
+                                    <form asp-controller="Favorites" asp-action="Add" method="post" class="d-inline">
+                                        <input type="hidden" name="productId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-favorite btn-sm">
+                                            <i class="bi bi-heart"></i> Favorite
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="favorite-badge">
+                                        <i class="bi bi-heart-fill"></i> In Favorites
+                                    </span>
+                                }
+
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>

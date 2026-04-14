@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using CinemaFanShop.Core.Contracts;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using System.Security.Claims;
 
 namespace CinemaFanShop.Controllers
 {
@@ -40,6 +42,7 @@ namespace CinemaFanShop.Controllers
         [AllowAnonymous]
         public ActionResult Index(string searchStringCategoryName, string searchStringBrandName, string searchStringMovieName)
         {
+            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<ProductIndexVM> products = _productService
                 .GetProducts(searchStringCategoryName, searchStringBrandName, searchStringMovieName)
                 .Select(product => new ProductIndexVM
@@ -55,7 +58,8 @@ namespace CinemaFanShop.Controllers
                     Picture = product.Picture,
                     Quantity = product.Quantity,
                     Price = product.Price,
-                    Discount = product.Discount
+                    Discount = product.Discount,
+                    IsFavorites = userId != null && product.Favourites.Any(f => f.UserId == userId)
                 })
                 .ToList();
 

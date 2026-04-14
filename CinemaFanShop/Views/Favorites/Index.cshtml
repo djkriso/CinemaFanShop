@@ -1,0 +1,145 @@
+﻿@model IEnumerable<CinemaFanShop.Models.Product.ProductIndexVM>
+
+@{
+    ViewData["Title"] = "Favorites";
+}
+
+<style>
+    .page-header {
+        margin-bottom: 25px;
+    }
+
+    .modern-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .modern-table thead {
+        background: #111827;
+        color: white;
+    }
+
+    .modern-table tbody tr:hover {
+        background-color: #f3f4f6;
+        transition: 0.2s;
+    }
+
+    .product-img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .btn-rounded {
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+
+    /* ❤️ REMOVE BUTTON */
+    .btn-remove {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+        transition: 0.25s ease;
+    }
+
+    .btn-remove:hover {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(220,38,38,0.3);
+    }
+
+    /* EMPTY STATE */
+    .empty-box {
+        text-align: center;
+        padding: 50px;
+        color: #6b7280;
+    }
+
+    .empty-box i {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="container mt-4">
+
+    <div class="page-header">
+        <h2 class="fw-bold">❤️ Your Favorites</h2>
+    </div>
+
+    <div class="modern-card">
+
+        @if (!Model.Any())
+        {
+            <div class="empty-box">
+                <i class="bi bi-heart"></i>
+                <h5>No favorites yet</h5>
+                <p>Start adding products you like ❤️</p>
+            </div>
+        }
+        else
+        {
+            <table class="table modern-table align-middle">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                        <th>@Html.DisplayNameFor(model => model.BrandName)</th>
+                        <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><strong>@item.ProductName</strong></td>
+
+                            <td>@item.BrandName</td>
+
+                            <td>@item.CategoryName</td>
+
+                            <td>
+                                <img src="@item.Picture" class="product-img" />
+                            </td>
+
+                            <td>
+                                <div class="d-flex gap-2">
+
+                                    <a asp-action="Details" asp-route-id="@item.Id"
+                                       class="btn btn-success btn-sm btn-rounded">
+                                        Details
+                                    </a>
+
+                                    <form asp-controller="Favorites" asp-action="Remove" method="post">
+                                        <input type="hidden" name="productId" value="@item.Id" />
+                                        <button type="submit" class="btn btn-remove btn-sm">
+                                            <i class="bi bi-trash"></i> Remove
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
