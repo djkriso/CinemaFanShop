@@ -141,7 +141,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favorites", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -409,7 +409,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favorites", b =>
                 {
                     b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Product", "Product")
                         .WithMany("Favourites")

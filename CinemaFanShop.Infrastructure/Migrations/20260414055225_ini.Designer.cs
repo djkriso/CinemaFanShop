@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaFanShop.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260311073212_intiial")]
-    partial class intiial
+    [Migration("20260414055225_ini")]
+    partial class ini
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,7 +144,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favorites", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -412,7 +412,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favourites", b =>
+            modelBuilder.Entity("CinemaFanShop.Infrastructure.Data.Entities.Favorites", b =>
                 {
                     b.HasOne("CinemaFanShop.Infrastructure.Data.Entities.Product", "Product")
                         .WithMany("Favourites")

@@ -75,7 +75,7 @@ namespace WebShopApp.Core.Contracts
                     .ToList();
             }
 
-            else if (!string.IsNullOrEmpty(searchStringMovieName))
+            if (!string.IsNullOrEmpty(searchStringMovieName))
             {
                 products = products
                     .Where(x =>

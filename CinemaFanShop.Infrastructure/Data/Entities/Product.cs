@@ -44,7 +44,7 @@ namespace CinemaFanShop.Infrastructure.Data.Entities
         public virtual Movie Movie { get; set; } = null!;
 
         public virtual IEnumerable<Order> Orders { get; set; } = new List<Order>();
-        public virtual IEnumerable<Favourites> Favourites { get; set; } = new List<Favourites>();
+        public virtual IEnumerable<Favorites> Favourites { get; set; } = new List<Favorites>();
 
     }
 

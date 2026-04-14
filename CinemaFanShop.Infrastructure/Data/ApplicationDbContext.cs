@@ -17,7 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Favourites> Favorites { get; set; }
+        public DbSet<Favorites> Favorites { get; set; }
 
     }
 }

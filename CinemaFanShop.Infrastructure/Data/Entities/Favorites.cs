@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CinemaFanShop.Infrastructure.Data.Entities
 {
-    public class Favourites
+    public class Favorites
     {
         public int Id { get; set; }
 

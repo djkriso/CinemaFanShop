@@ -26,7 +26,7 @@ namespace CinemaFanShop.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            List<ProductIndexVM> products = favoritesService.GetUserFavorites(userId)
+            List<ProductIndexVM> products = _favoritesService.GetUserFavorites(userId)
             .Select(product => new ProductIndexVM
             {
                 Id = product.Id,
@@ -53,11 +53,11 @@ namespace CinemaFanShop.Controllers
             }
 
 
-            bool isInFavorites = FavoritesService.IsProductFavorites(userId, productId);
+            bool isInFavorites = _favoritesService.IsProductFavorites(userId, productId);
 
             if (!isInFavorites)
             {
-                favoritesService.AddToFavorites(userId, productId);
+                _favoritesService.AddToFavorites(userId, productId);
             }
 
             return RedirectToAction(nameof(Index));
@@ -75,10 +75,10 @@ namespace CinemaFanShop.Controllers
 
 
 
-            bool isInFavorites = FavoritesService.IsProductFavorites(userId, productId);
+            bool isInFavorites = _favoritesService.IsProductFavorites(userId, productId);
             if (isInFavorites)
             {
-                FavoritesService.RemoveFromFavorites(userId, productId);
+                _favoritesService.RemoveFromFavorites(userId, productId);
             }
 
             return RedirectToAction(nameof(Index));
