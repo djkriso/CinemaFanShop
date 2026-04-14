@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CinemaFanShop.Infrastructure.Data.Entities;
 using CinemaFanShop.Infrastructure.Data.Infrastructure;
-using WebShopApp.Core.Contracts;
-using WebShopApp.Core.Services;
+using CinemaFanShop.Core.Contracts;
+using CinemaFanShop.Core.Services;
 using CinemaFanShop.Core.Services;
 
 

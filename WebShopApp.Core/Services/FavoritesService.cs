@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using CinemaFanShop.Infrastructure.Data;
 using CinemaFanShop.Infrastructure.Data.Entities;
-using WebShopApp.Core.Contracts;
+using CinemaFanShop.Core.Contracts;
 
 namespace CinemaFanShop.Core.Services
 {

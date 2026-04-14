@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WebShopApp.Core.Contracts;
+using CinemaFanShop.Core.Contracts;
 
-namespace WebShopApp.Core.Services
+namespace CinemaFanShop.Core.Services
 {
     public class MovieService : IMovieService
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebShopApp.Core.Contracts
+namespace CinemaFanShop.Core.Contracts
 {
     public interface IBrandService
     {

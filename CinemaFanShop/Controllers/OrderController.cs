@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Security.Claims;
 
-using WebShopApp.Core.Contracts;
+using CinemaFanShop.Core.Contracts;
 
 namespace CinemaFanShop.Controllers
 {

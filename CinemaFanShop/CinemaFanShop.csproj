@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CinemaFanShop.Infrastructure\CinemaFanShop.Infrastructure.csproj" />
-    <ProjectReference Include="..\WebShopApp.Core\WebShopApp.Core.csproj" />
+    <ProjectReference Include="..\WebShopApp.Core\CinemaFanShop.Core.csproj" />
   </ItemGroup>
 
 </Project>

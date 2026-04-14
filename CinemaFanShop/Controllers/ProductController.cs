@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using WebShopApp.Core.Contracts;
+using CinemaFanShop.Core.Contracts;
 
 namespace CinemaFanShop.Controllers
 {

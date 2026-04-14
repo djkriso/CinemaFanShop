@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-using WebShopApp.Core.Contracts;
+using CinemaFanShop.Core.Contracts;
 
 namespace CinemaFanShop.Controllers
 {
