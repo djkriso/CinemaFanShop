@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CinemaFanShop.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class ini : Migration
+    public partial class addMigrationIme : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -274,8 +274,7 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Discount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {

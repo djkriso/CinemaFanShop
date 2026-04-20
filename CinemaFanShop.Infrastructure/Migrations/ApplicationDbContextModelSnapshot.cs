@@ -206,9 +206,6 @@ namespace CinemaFanShop.Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
