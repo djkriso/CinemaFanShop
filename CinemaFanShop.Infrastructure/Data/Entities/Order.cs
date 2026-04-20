@@ -40,7 +40,6 @@ namespace CinemaFanShop.Infrastructure.Data.Entities
                        - this.Quantity * this.Price * this.Discount / 100;
             }
         }
-        public DateTime ReservationDate { get; set; }
     }
 
 }
